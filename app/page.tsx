@@ -1,7 +1,14 @@
+import LatestPosts from "@/components/home/latest-posts";
+
 export default async function Home() {
   return (
     <>
-      <h1>hello world..</h1>
+      <MainNav />
+      <main>
+        <div>
+          <LatestPosts />
+        </div>
+      </main>
     </>
   );
 }

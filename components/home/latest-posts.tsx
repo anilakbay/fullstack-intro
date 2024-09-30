@@ -1,4 +1,4 @@
-import { formatDate, getBlogPosts } from "@/app/blog/utils";
+import { formData, getBlogPosts } from "@/app/blog/utils";
 import Link from "next/link";
 
 export default function LatestPosts() {
@@ -6,11 +6,11 @@ export default function LatestPosts() {
 
   // Sıralama işlemi
   latestPosts.sort((a, b) => {
-    const dateA = a.metadata.publishedAt
-      ? new Date(a.metadata.publishedAt)
+    const dateA = a.metadata.publisher
+      ? new Date(a.metadata.publisher)
       : new Date(0); // Varsayılan olarak 1970-01-01
-    const dateB = b.metadata.publishedAt
-      ? new Date(b.metadata.publishedAt)
+    const dateB = b.metadata.publisher
+      ? new Date(b.metadata.publisher)
       : new Date(0); // Varsayılan olarak 1970-01-01
 
     return dateB.getTime() - dateA.getTime(); // En yeni tarih en önde
@@ -30,7 +30,7 @@ export default function LatestPosts() {
           </Link>
           <p className="leading-8 my-5">{post.metadata.summary}</p>
           <p className="text-sm text-muted-foreground">
-            {formatDate(post.metadata.publishedAt)}
+            {formDate(post.metadata.publisher)}
           </p>
         </article>
       ))}
