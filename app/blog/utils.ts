@@ -33,7 +33,7 @@ export function getBlogPosts() {
   return getMdxData(path.join(process.cwd(), "app", "blog", "contents"));
 }
 
-export function formData(date: string, includeRelative = false) {
+export function formData(date: string, includeRelative = true) {
   let currentDate = new Date(date);
   if (!date.includes("T")) {
     date = `${date}T00:00:00`;
