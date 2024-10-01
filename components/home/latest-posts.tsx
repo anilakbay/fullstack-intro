@@ -1,5 +1,16 @@
-import { formData, getBlogPosts } from "@/app/blog/utils";
+import { getBlogPosts } from "@/app/blog/utils"; // Eğer formData bir fonksiyon değilse buradan sil.
 import Link from "next/link";
+
+// Yeni formatDate fonksiyonu
+const formatDate = (dateString: string) => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const date = new Date(dateString);
+  return date.toLocaleDateString(undefined, options);
+};
 
 export default function LatestPosts() {
   let latestPosts = getBlogPosts();
@@ -30,7 +41,7 @@ export default function LatestPosts() {
           </Link>
           <p className="leading-8 my-5">{post.metadata.summary}</p>
           <p className="text-sm text-muted-foreground">
-            {formDate(post.metadata.publisher)}
+            {formatDate(post.metadata.publisher)}
           </p>
         </article>
       ))}
